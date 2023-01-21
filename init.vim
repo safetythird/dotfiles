@@ -3,6 +3,7 @@ Plug 'tpope/vim-surround'
 " fzf must be installed using homebrew (newer mac only)
 Plug '/opt/homebrew/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-sneak'
 call plug#end()
 
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"
