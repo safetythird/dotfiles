@@ -1,3 +1,7 @@
+call plug#begin()
+Plug 'tpope/vim-surround'
+call plug#end()
+
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"
 
 set number
