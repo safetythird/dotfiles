@@ -3,8 +3,16 @@ Plug 'tpope/vim-surround'
 " fzf must be installed using homebrew (newer mac only)
 Plug '/opt/homebrew/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'justinmk/vim-sneak'
+Plug 'ggandor/leap.nvim'
+Plug 'EdenEast/nightfox.nvim'
+Plug 'nvim-tree/nvim-web-devicons' " nvim-tree optional req, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
 call plug#end()
+
+:lua require('leapconfig')
+
+let g:termguicolors = 1
+colorscheme duskfox
 
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"
 
@@ -22,6 +30,7 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 noremap <C-p> :Files<CR>
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 " Auto-write text files
 autocmd InsertLeave,TextChanged,FocusLost *.txt silent! write
