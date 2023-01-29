@@ -7,6 +7,7 @@ Plug 'ggandor/leap.nvim'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'nvim-tree/nvim-web-devicons' " nvim-tree optional req, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " lua plugin configurations
