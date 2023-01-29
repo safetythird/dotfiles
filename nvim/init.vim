@@ -8,11 +8,13 @@ Plug 'EdenEast/nightfox.nvim'
 Plug 'nvim-tree/nvim-web-devicons' " nvim-tree optional req, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 " lua plugin configurations
 :lua require('leapconfig')
 :lua require('treeconfig')
+:lua require('treesitterconfig')
 
 set termguicolors
 colorscheme duskfox
