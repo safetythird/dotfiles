@@ -9,6 +9,7 @@ Plug 'nvim-tree/nvim-web-devicons' " nvim-tree optional req, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'gpanders/editorconfig.nvim'
 call plug#end()
 
 " lua plugin configurations
