@@ -40,6 +40,7 @@ noremap <C-l> <C-w>l
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 noremap <Leader>w :write<CR>
 noremap <C-p> :Files<CR>
+noremap <C-b> :Buffers<CR>
 noremap <Leader>t :NvimTreeToggle<CR>
 
 " autocmd
