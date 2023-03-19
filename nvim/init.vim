@@ -10,12 +10,26 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'gpanders/editorconfig.nvim'
+Plug 'Glench/Vim-Jinja2-Syntax'
+" lsp
+Plug 'neovim/nvim-lspconfig'
+" snippets
+Plug 'dcampos/nvim-snippy'
+" cmp-nvim
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'dcampos/cmp-snippy'
+
 call plug#end()
 
 " lua plugin configurations
 :lua require('leapconfig')
 :lua require('treeconfig')
 :lua require('treesitterconfig')
+:lua require('cmpconfig')
 
 set termguicolors
 colorscheme duskfox
@@ -43,7 +57,9 @@ noremap <C-p> :Files<CR>
 noremap <C-b> :Buffers<CR>
 noremap <Leader>t :NvimTreeToggle<CR>
 
-" autocmd
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"
 " Auto-write text files
 autocmd InsertLeave,TextChanged,FocusLost *.txt silent! write
+
+autocmd FileType lua set ts=2|set sw=2|set expandtab
+autocmd FileType python set ts=4|set sw=4|set expandtab
