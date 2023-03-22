@@ -1,6 +1,6 @@
 local cmp = require'cmp'
 local snippy = require'snippy'
-
+local autopairs = require'nvim-autopairs'
 
 cmp.setup({
 	snippet = {
@@ -71,3 +71,12 @@ lspconfig['tsserver'].setup {
 lspconfig['svelte'].setup {
   capabilities = capabilities
 }
+
+autopairs.setup({})
+
+-- Set up autopairs
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
