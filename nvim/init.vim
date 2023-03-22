@@ -11,6 +11,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'gpanders/editorconfig.nvim'
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'windwp/nvim-autopairs'
+
 " lsp
 Plug 'neovim/nvim-lspconfig'
 " snippets
@@ -53,8 +55,13 @@ noremap <C-l> <C-w>l
 
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 noremap <Leader>w :write<CR>
+noremap <Leader>n :source $MYVIMRC<CR>
+
+" fzf
 noremap <C-p> :Files<CR>
 noremap <C-b> :Buffers<CR>
+noremap <Leader>a :Ag 
+" nvim-tree
 noremap <Leader>t :NvimTreeToggle<CR>
 
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"
@@ -63,3 +70,4 @@ autocmd InsertLeave,TextChanged,FocusLost *.txt silent! write
 
 autocmd FileType lua set ts=2|set sw=2|set expandtab
 autocmd FileType python set ts=4|set sw=4|set expandtab
+autocmd FileType html,svelte set ts=2|set sw=2|set noexpandtab
