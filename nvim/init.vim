@@ -10,7 +10,6 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'gpanders/editorconfig.nvim'
-Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'windwp/nvim-autopairs'
 
 " lsp
@@ -24,6 +23,10 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'dcampos/cmp-snippy'
+
+" language-specific
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'ray-x/go.nvim'
 
 call plug#end()
 
@@ -57,12 +60,17 @@ nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 noremap <Leader>w :write<CR>
 noremap <Leader>n :source $MYVIMRC<CR>
 
+function! RemoveTrailingWhitespace()
+  %s/\s\+$//g
+endfunction
+
 " fzf
 noremap <C-p> :Files<CR>
 noremap <C-b> :Buffers<CR>
-noremap <Leader>a :Ag 
+noremap <Leader>a :Ag
 " nvim-tree
 noremap <Leader>t :NvimTreeToggle<CR>
+noremap <Leader>h :lua vim.lsp.buf.hover()<CR>
 
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"
 " Auto-write text files
