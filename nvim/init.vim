@@ -1,7 +1,6 @@
 call plug#begin()
 Plug 'tpope/vim-surround'
 Plug 'numToStr/Comment.nvim'
-" fzf must be installed using homebrew (newer mac only)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ggandor/leap.nvim'
@@ -12,6 +11,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'gpanders/editorconfig.nvim'
 Plug 'windwp/nvim-autopairs'
+
+" Obsidian.nvim
+Plug 'nvim-lua/plenary.nvim'
+Plug 'preservim/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'epwalsh/obsidian.nvim'
 
 " lsp
 Plug 'neovim/nvim-lspconfig'
@@ -36,6 +41,7 @@ call plug#end()
 :lua require('treeconfig')
 :lua require('treesitterconfig')
 :lua require('cmpconfig')
+lua require('obsidianconfig')
 lua require('Comment').setup()
 
 set termguicolors
