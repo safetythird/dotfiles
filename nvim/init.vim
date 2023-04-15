@@ -77,12 +77,20 @@ noremap <Leader>a :Ag
 " nvim-tree
 noremap <Leader>t :NvimTreeToggle<CR>
 noremap <Leader>h :lua vim.lsp.buf.hover()<CR>
+" Obsidian
+noremap <Leader>on :ObsidianNew 
+noremap <Leader>od :ObsidianToday<CR>
+noremap <Leader>ob :ObsidianBacklinks<CR>
+noremap <Leader>oo :ObsidianOpen<CR>
+noremap <Leader>os :ObsidianSearch<CR>
+noremap <Leader>oll :ObsidianLink 
+noremap <Leader>oln :ObsidianLinkNew 
 
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"
 " Auto-write text files
 autocmd InsertLeave,TextChanged,FocusLost *.txt silent! write
 
-autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+autocmd BufWritePre *.lua lua vim.lsp.buf.format()
 autocmd FileType lua set ts=2|set sw=2|set expandtab
 autocmd FileType python set ts=4|set sw=4|set expandtab
 autocmd FileType html,svelte set ts=2|set sw=2|set noexpandtab
