@@ -52,6 +52,7 @@ set ignorecase
 set smartcase
 
 let g:mapleader = ' '
+set mouse=
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
