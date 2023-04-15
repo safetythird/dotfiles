@@ -63,6 +63,7 @@ cmp.setup.cmdline(':', {
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
+local lsputil = require('lspconfig/util')
 -- https://github.com/typescript-language-server/typescript-language-server
 lspconfig['tsserver'].setup {
 	capabilities = capabilities
@@ -71,6 +72,29 @@ lspconfig['tsserver'].setup {
 lspconfig['svelte'].setup {
   capabilities = capabilities
 }
+
+lspconfig['gopls'].setup {
+  capabilities = capabilities,
+  cmd = {"gopls", "serve"},
+  filetypes = {"go", "gomod"},
+  root_dir = lsputil.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      staticcheck = true,
+    }
+  }
+}
+
+require("go").setup()
+
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimport()
+  end,
+  group = format_sync_grp,
+})
 
 autopairs.setup({})
 
