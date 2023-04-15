@@ -85,6 +85,7 @@ autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"
 " Auto-write text files
 autocmd InsertLeave,TextChanged,FocusLost *.txt silent! write
 
+autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
 autocmd FileType lua set ts=2|set sw=2|set expandtab
 autocmd FileType python set ts=4|set sw=4|set expandtab
 autocmd FileType html,svelte set ts=2|set sw=2|set noexpandtab
