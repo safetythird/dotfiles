@@ -88,9 +88,10 @@ noremap <Leader>oln :ObsidianLinkNew
 
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"
 " Auto-write text files
-autocmd InsertLeave,TextChanged,FocusLost *.txt silent! write
+autocmd InsertLeave,TextChanged,FocusLost *.txt,*.md silent! write
 
 autocmd BufWritePre *.lua lua vim.lsp.buf.format()
+autocmd FileType markdown,text set linebreak|set breakindent
 autocmd FileType lua set ts=2|set sw=2|set expandtab
 autocmd FileType python set ts=4|set sw=4|set expandtab
 autocmd FileType html,svelte set ts=2|set sw=2|set noexpandtab
