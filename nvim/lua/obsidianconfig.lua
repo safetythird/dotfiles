@@ -19,8 +19,7 @@ require("obsidian").setup({
         suffix = suffix .. string.char(math.random(65, 90))
       end
     end
-    -- IDs look like "23Apr15-foo-bar"
-    return tostring(os.date("%y%b%d")) .. "-" .. suffix
+    -- IDs look like "230415-foo-bar"
+    return tostring(os.date("%y%m%d")) .. "-" .. suffix
   end
-
 })
