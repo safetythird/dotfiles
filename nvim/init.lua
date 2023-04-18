@@ -74,7 +74,7 @@ vim.api.nvim_set_keymap('n', '<Leader>a', ':Ag ', { noremap = true })
 -- nvim-tree
 vim.api.nvim_set_keymap('n', '<Leader>t', ':NvimTreeToggle<CR>', { noremap = true })
 -- Obsidian
-vim.api.nvim_set_keymap('n', '<Leader>on', ':ObsidianNew', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>on', ':ObsidianNew ', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>od', ':vsplit<CR>:ObsidianToday<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>ob', ':ObsidianBacklinks<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>oo', ':ObsidianOpen<CR>', { noremap = true })
