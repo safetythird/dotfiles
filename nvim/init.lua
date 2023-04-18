@@ -86,14 +86,33 @@ vim.api.nvim_set_keymap('n', '<Leader>oln', ':ObsidianLinkNew ', { noremap = tru
 -- Autocommands --
 
 vim.api.nvim_command('autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"')
--- Filetype specific settings
-vim.api.nvim_command('autocmd InsertLeave,TextChanged,FocusLost .txt,.md silent! write')
-vim.api.nvim_command('autocmd BufWritePre *.lua lua vim.lsp.buf.format()')
-vim.api.nvim_command('autocmd FileType markdown,text set ts=2|set sw=2|set linebreak|set breakindent')
-vim.api.nvim_command('autocmd FileType lua set ts=2|set sw=2|set expandtab')
-vim.api.nvim_command('autocmd FileType python set ts=4|set sw=4|set expandtab')
-vim.api.nvim_command('autocmd FileType html,svelte set ts=2|set sw=2|set noexpandtab')
-vim.api.nvim_command('autocmd FileType sql set ts=2|set sw=2|set noexpandtab')
+-- Filetype specific Autocommands
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged', 'FocusLost' }, {
+  pattern = { '*.md', '*.txt' },
+  command = 'silent! write'
+})
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  pattern = { '*.lua' },
+  callback = function(ev)
+    vim.lsp.buf.format()
+  end
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = { 'markdown', 'text' },
+  command = 'set ts=2|set sw=2|set linebreak|set breakindent'
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = { 'lua' },
+  command = 'set ts=2|set sw=2|set expandtab'
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = { 'python' },
+  command = 'set ts=4|set sw=4|set expandtab'
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = { 'html', 'svelte', 'sql' },
+  command = 'set ts=2|set sw=2|set noexpandtab'
+})
 
 -- Plugin settings --
 
