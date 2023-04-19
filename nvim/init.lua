@@ -87,6 +87,14 @@ require("lazy").setup({
 
   {
     "github/copilot.vim",
+    -- ft = function()
+    --   local copilotft = os.getenv("COPILOT_FILETYPES")
+    --   if (copilotft == nil or copilotft == "") then
+    --     return { "*" }
+    --   else
+    --     return vim.split(copilotft, ",")
+    --   end
+    -- end,
     config = function()
       vim.g.copilot_node_command = "~/.nvm/versions/node/v16.20.0/bin/node"
       vim.cmd('imap <silent><script><expr> <C-J> copilot#Accept("\\<CR>")')
