@@ -179,7 +179,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   pattern = { 'markdown', 'text' },
-  command = 'set ts=2|set sw=2|set linebreak|set breakindent'
+  command = 'set ts=2|set sw=2|set linebreak|set breakindent|setl formatoptions+=r|setl comments=b:*,b:-,b:+,b:>'
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   pattern = { 'lua' },
