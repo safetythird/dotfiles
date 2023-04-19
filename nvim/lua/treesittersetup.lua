@@ -5,7 +5,6 @@ require 'nvim-treesitter.configs'.setup {
     "c",
     "lua",
     "vim",
-    -- "help",
     "python",
     "javascript",
     "ruby",
@@ -15,6 +14,7 @@ require 'nvim-treesitter.configs'.setup {
     "html",
     "sql"
   },
+  auto_install = true,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = { "markdown" }
