@@ -1,38 +1,3 @@
--- vim.fn['plug#begin']()
--- vim.fn['plug#']('tpope/vim-surround')
--- vim.fn['plug#']('numToStr/Comment.nvim')
--- vim.fn['plug#']('junegunn/fzf', { ['do'] = function() vim.fn['fzf#install']() end })
--- vim.fn['plug#']('junegunn/fzf.vim')
--- vim.fn['plug#']('ggandor/leap.nvim')
--- vim.fn['plug#']('EdenEast/nightfox.nvim')
--- vim.fn['plug#']('nvim-tree/nvim-web-devicons') -- nvim-tree optional req, for file icons
--- vim.fn['plug#']('nvim-tree/nvim-tree.lua')
--- vim.fn['plug#']('tpope/vim-fugitive')
--- vim.fn['plug#']('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
--- vim.fn['plug#']('windwp/nvim-autopairs')
--- -- Obsidian
--- vim.fn['plug#']('nvim-lua/plenary.nvim')
--- vim.fn['plug#']('epwalsh/obsidian.nvim')
--- -- LSP
--- vim.fn['plug#']('neovim/nvim-lspconfig')
--- -- Snippets
--- vim.fn['plug#']('dcampos/nvim-snippy')
--- -- Completion
--- vim.fn['plug#']('hrsh7th/cmp-nvim-lsp')
--- vim.fn['plug#']('hrsh7th/cmp-buffer')
--- vim.fn['plug#']('hrsh7th/cmp-path')
--- vim.fn['plug#']('hrsh7th/cmp-cmdline')
--- vim.fn['plug#']('hrsh7th/nvim-cmp')
--- vim.fn['plug#']('dcampos/cmp-snippy')
---
--- vim.fn['plug#']('dense-analysis/ale')
--- vim.fn['plug#']('github/copilot.vim')
---
--- -- Language specific
--- vim.fn['plug#']('Glench/Vim-Jinja2-Syntax')
--- vim.fn['plug#']('ray-x/go.nvim')
--- vim.fn['plug#end']()
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -86,15 +51,18 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   {
     "nvim-treesitter/nvim-treesitter",
-    config = "treesittersetup"
+    config = function() require("treesittersetup") end
   },
   "windwp/nvim-autopairs",
   {
     "epwalsh/obsidian.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = "obsidiansetup"
+    config = function() require("obsidiansetup") end
   },
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+    config = function() require("lspsetup") end
+  },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -106,7 +74,7 @@ require("lazy").setup({
       "dcampos/nvim-snippy",
       "dcampos/cmp-snippy",
     },
-    config = "cmpsetup"
+    config = function() require("cmpsetup") end
   },
 
   -- "dense-analysis/ale",
@@ -132,7 +100,7 @@ require("lazy").setup({
   },
 })
 
-require("lspsetup")
+
 
 -- Interface --
 
