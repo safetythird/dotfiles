@@ -1,44 +1,135 @@
-vim.fn['plug#begin']()
-vim.fn['plug#']('tpope/vim-surround')
-vim.fn['plug#']('numToStr/Comment.nvim')
-vim.fn['plug#']('junegunn/fzf', { ['do'] = function() vim.fn['fzf#install']() end })
-vim.fn['plug#']('junegunn/fzf.vim')
-vim.fn['plug#']('ggandor/leap.nvim')
-vim.fn['plug#']('EdenEast/nightfox.nvim')
-vim.fn['plug#']('nvim-tree/nvim-web-devicons') -- nvim-tree optional req, for file icons
-vim.fn['plug#']('nvim-tree/nvim-tree.lua')
-vim.fn['plug#']('tpope/vim-fugitive')
-vim.fn['plug#']('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
-vim.fn['plug#']('windwp/nvim-autopairs')
--- Obsidian
-vim.fn['plug#']('nvim-lua/plenary.nvim')
-vim.fn['plug#']('epwalsh/obsidian.nvim')
--- LSP
-vim.fn['plug#']('neovim/nvim-lspconfig')
--- Snippets
-vim.fn['plug#']('dcampos/nvim-snippy')
--- Completion
-vim.fn['plug#']('hrsh7th/cmp-nvim-lsp')
-vim.fn['plug#']('hrsh7th/cmp-buffer')
-vim.fn['plug#']('hrsh7th/cmp-path')
-vim.fn['plug#']('hrsh7th/cmp-cmdline')
-vim.fn['plug#']('hrsh7th/nvim-cmp')
-vim.fn['plug#']('dcampos/cmp-snippy')
+-- vim.fn['plug#begin']()
+-- vim.fn['plug#']('tpope/vim-surround')
+-- vim.fn['plug#']('numToStr/Comment.nvim')
+-- vim.fn['plug#']('junegunn/fzf', { ['do'] = function() vim.fn['fzf#install']() end })
+-- vim.fn['plug#']('junegunn/fzf.vim')
+-- vim.fn['plug#']('ggandor/leap.nvim')
+-- vim.fn['plug#']('EdenEast/nightfox.nvim')
+-- vim.fn['plug#']('nvim-tree/nvim-web-devicons') -- nvim-tree optional req, for file icons
+-- vim.fn['plug#']('nvim-tree/nvim-tree.lua')
+-- vim.fn['plug#']('tpope/vim-fugitive')
+-- vim.fn['plug#']('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+-- vim.fn['plug#']('windwp/nvim-autopairs')
+-- -- Obsidian
+-- vim.fn['plug#']('nvim-lua/plenary.nvim')
+-- vim.fn['plug#']('epwalsh/obsidian.nvim')
+-- -- LSP
+-- vim.fn['plug#']('neovim/nvim-lspconfig')
+-- -- Snippets
+-- vim.fn['plug#']('dcampos/nvim-snippy')
+-- -- Completion
+-- vim.fn['plug#']('hrsh7th/cmp-nvim-lsp')
+-- vim.fn['plug#']('hrsh7th/cmp-buffer')
+-- vim.fn['plug#']('hrsh7th/cmp-path')
+-- vim.fn['plug#']('hrsh7th/cmp-cmdline')
+-- vim.fn['plug#']('hrsh7th/nvim-cmp')
+-- vim.fn['plug#']('dcampos/cmp-snippy')
+--
+-- vim.fn['plug#']('dense-analysis/ale')
+-- vim.fn['plug#']('github/copilot.vim')
+--
+-- -- Language specific
+-- vim.fn['plug#']('Glench/Vim-Jinja2-Syntax')
+-- vim.fn['plug#']('ray-x/go.nvim')
+-- vim.fn['plug#end']()
 
-vim.fn['plug#']('dense-analysis/ale')
-vim.fn['plug#']('github/copilot.vim')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Language specific
-vim.fn['plug#']('Glench/Vim-Jinja2-Syntax')
-vim.fn['plug#']('ray-x/go.nvim')
-vim.fn['plug#end']()
+require("lazy").setup({
+  "tpope/vim-surround",
+  "numToStr/Comment.nvim",
+  {
+    "junegunn/fzf",
+    dependencies = { "junegunn/fzf.vim" }
+  },
+  "junegunn/fzf.vim",
+  {
+    "ggandor/leap.nvim",
+    config = function()
+      local leap = require('leap')
+      leap.add_default_mappings()
+      leap.opts.highlight_unlabeled_phase_one_targets = true
+    end
+  },
+  "EdenEast/nightfox.nvim",
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
 
-require('leapconfig')
-require('treeconfig')
-require('treesitterconfig')
-require('cmpconfig')
-require('obsidianconfig')
-require('Comment').setup()
+      local nvimtree = require("nvim-tree")
+
+      nvimtree.setup({
+        update_focused_file = {
+          enable = true,
+          update_root = false
+        }
+      })
+    end
+  },
+  "tpope/vim-fugitive",
+  {
+    "nvim-treesitter/nvim-treesitter",
+    config = "treesittersetup"
+  },
+  "windwp/nvim-autopairs",
+  {
+    "epwalsh/obsidian.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = "obsidiansetup"
+  },
+  "neovim/nvim-lspconfig",
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      -- Snippets
+      "dcampos/nvim-snippy",
+      "dcampos/cmp-snippy",
+    },
+    config = "cmpsetup"
+  },
+
+  -- "dense-analysis/ale",
+
+  "github/copilot.vim",
+
+  -- Language specific
+  { "Glench/Vim-Jinja2-Syntax", ft = "jinja" },
+  {
+    "ray-x/go.nvim",
+    ft = "go",
+    config = function()
+      require("go").setup()
+      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.go",
+        callback = function()
+          require('go.format').goimport()
+        end,
+        group = format_sync_grp,
+      })
+    end
+  },
+})
+
+require("lspsetup")
 
 -- Interface --
 
