@@ -30,7 +30,13 @@ require("lazy").setup({
       leap.opts.highlight_unlabeled_phase_one_targets = true
     end
   },
-  "EdenEast/nightfox.nvim",
+  {
+    "EdenEast/nightfox.nvim",
+    config = function()
+      vim.o.termguicolors = true
+      vim.cmd('colorscheme duskfox')
+    end
+  },
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -79,7 +85,14 @@ require("lazy").setup({
 
   -- "dense-analysis/ale",
 
-  "github/copilot.vim",
+  {
+    "github/copilot.vim",
+    config = function()
+      vim.g.copilot_node_command = "~/.nvm/versions/node/v16.20.0/bin/node"
+      vim.cmd('imap <silent><script><expr> <C-J> copilot#Accept("\\<CR>")')
+      vim.g.copilot_no_tab_map = true
+    end
+  },
 
   -- Language specific
   { "Glench/Vim-Jinja2-Syntax", ft = "jinja" },
@@ -104,8 +117,6 @@ require("lazy").setup({
 
 -- Interface --
 
-vim.o.termguicolors = true
-vim.cmd('colorscheme duskfox')
 vim.o.number = true
 if vim.o.scrolloff == 0 then vim.o.scrolloff = 3 end
 if vim.o.sidescrolloff == 0 then vim.o.sidescrolloff = 5 end
@@ -175,10 +186,3 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   pattern = { 'html', 'svelte', 'sql' },
   command = 'set ts=2|set sw=2|set noexpandtab'
 })
-
--- Plugin settings --
-
--- Copilot
-vim.g.copilot_node_command = "~/.nvm/versions/node/v16.20.0/bin/node"
-vim.cmd('imap <silent><script><expr> <C-J> copilot#Accept("\\<CR>")')
-vim.g.copilot_no_tab_map = true
