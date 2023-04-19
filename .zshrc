@@ -110,7 +110,9 @@ bindkey "$terminfo[kcud1]" down-line-or-beginning-search
 bindkey -M vicmd 'k' up-line-or-beginning-search
 bindkey -M vicmd 'j' down-line-or-beginning-search
 
-export PATH=$PATH:$(go env GOPATH)/bin
+if command -v go &>/dev/null && go version &>/dev/null; then
+  export PATH=$PATH:$(go env GOPATH)/bin
+fi
 
 [ -d ~/github/safetythird/dotfiles ] && export XDG_CONFIG_HOME=~/github/safetythird/dotfiles
 
