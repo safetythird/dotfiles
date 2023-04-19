@@ -59,7 +59,7 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     config = function() require("treesittersetup") end
   },
-  "windwp/nvim-autopairs",
+  { "windwp/nvim-autopairs",    config = function() require("nvim-autopairs").setup {} end },
   {
     "epwalsh/obsidian.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
