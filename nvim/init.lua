@@ -48,7 +48,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   "tpope/vim-surround",
-  "numToStr/Comment.nvim",
+  {
+    "numToStr/Comment.nvim",
+    config = function() require("Comment").setup() end
+  },
   {
     "junegunn/fzf",
     dependencies = { "junegunn/fzf.vim" }
