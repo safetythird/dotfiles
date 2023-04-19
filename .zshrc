@@ -112,6 +112,7 @@ bindkey -M vicmd 'j' down-line-or-beginning-search
 
 export PATH=$PATH:$(go env GOPATH)/bin
 
+[ -d ~/github/safetythird/dotfiles ] && export XDG_CONFIG_HOME=~/github/safetythird/dotfiles
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
