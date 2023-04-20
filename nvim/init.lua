@@ -125,6 +125,7 @@ require("lazy").setup({
 -- Interface --
 
 vim.o.number = true
+vim.o.cursorline = true
 if vim.o.scrolloff == 0 then vim.o.scrolloff = 3 end
 if vim.o.sidescrolloff == 0 then vim.o.sidescrolloff = 5 end
 vim.o.ignorecase = true
