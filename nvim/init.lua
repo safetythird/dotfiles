@@ -144,7 +144,6 @@ vim.api.nvim_set_keymap('n', '<Esc><Esc>', '<Esc>:nohlsearch<CR><Esc>', { norema
 vim.api.nvim_set_keymap('n', '<Leader>w', ':write<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>n', ':source $MYVIMRC<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>q', ':q<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>v', ':vnew<CR>', { noremap = true })
 -- Native LSP mappings
 vim.api.nvim_set_keymap('n', '<Leader>h', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
 -- Plugin mappings
@@ -161,12 +160,12 @@ vim.api.nvim_set_keymap('n', '<Leader>ob', ':ObsidianBacklinks<CR>', { noremap =
 vim.api.nvim_set_keymap('n', '<Leader>oo', ':ObsidianOpen<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>os', ':ObsidianSearch<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>op', ':ObsidianQuickSwitch<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>oll', ':ObsidianLink ', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>oln', ':ObsidianLinkNew ', { noremap = true })
+vim.api.nvim_set_keymap('v', '<Leader>oll', ':ObsidianLink ', { noremap = true })
+vim.api.nvim_set_keymap('v', '<Leader>oln', ':ObsidianLinkNew ', { noremap = true })
 
 -- Autocommands --
 
-vim.api.nvim_command('autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"')
+-- vim.api.nvim_command('autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"')
 -- Filetype specific Autocommands
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged', 'FocusLost' }, {
   pattern = { '*.md', '*.txt' },
