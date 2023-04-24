@@ -152,6 +152,8 @@ vim.api.nvim_set_keymap('n', '<Leader>n', ':source $MYVIMRC<CR>', { noremap = tr
 vim.api.nvim_set_keymap('n', '<Leader>q', ':q<CR>', { noremap = true })
 -- Native LSP mappings
 vim.api.nvim_set_keymap('n', '<Leader>h', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', ']e', ':lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '[e', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
 -- Plugin mappings
 -- fzf
 vim.api.nvim_set_keymap('n', '<C-p>', ':Files<CR>', { noremap = true })
