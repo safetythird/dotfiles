@@ -57,8 +57,14 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   {
     "nvim-treesitter/nvim-treesitter",
-    config = function() require("treesittersetup") end
+    config = function() require("treesittersetup") end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "windwp/nvim-ts-autotag",
+      "RRethy/nvim-treesitter-endwise",
+    },
   },
+
   { "windwp/nvim-autopairs",    config = function() require("nvim-autopairs").setup {} end },
   {
     "epwalsh/obsidian.nvim",
