@@ -22,14 +22,14 @@ require("lazy").setup({
     dependencies = { "junegunn/fzf.vim" }
   },
   "junegunn/fzf.vim",
-  {
-    "ggandor/leap.nvim",
-    config = function()
-      local leap = require('leap')
-      leap.add_default_mappings()
-      leap.opts.highlight_unlabeled_phase_one_targets = true
-    end
-  },
+  -- {
+  --   "ggandor/leap.nvim",
+  --   config = function()
+  --     local leap = require('leap')
+  --     leap.add_default_mappings()
+  --     leap.opts.highlight_unlabeled_phase_one_targets = true
+  --   end
+  -- },
   {
     "EdenEast/nightfox.nvim",
     config = function()
@@ -181,7 +181,7 @@ vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged', 'FocusLost' }, {
 })
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = { '*.lua' },
-  callback = function(ev)
+  callback = function()
     vim.lsp.buf.format()
   end
 })
@@ -198,6 +198,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   command = 'set ts=4|set sw=4|set expandtab'
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = { 'html', 'svelte', 'sql' },
+  pattern = { 'html', 'svelte', 'sql', 'go' },
   command = 'set ts=2|set sw=2|set noexpandtab'
 })
