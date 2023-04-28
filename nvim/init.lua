@@ -1,13 +1,13 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -56,31 +56,15 @@ vim.api.nvim_set_keymap('v', '<Leader>oln', ':ObsidianLinkNew ', { noremap = tru
 
 -- Autocommands --
 
--- vim.api.nvim_command('autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded {$MYVIMRC}"')
--- Filetype specific Autocommands
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged', 'FocusLost' }, {
-  pattern = { '*.md', '*.txt' },
-  command = 'silent! write'
-})
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  pattern = { '*.lua' },
-  callback = function()
-    vim.lsp.buf.format()
-  end
+	pattern = { '*.md', '*.txt' },
+	command = 'silent! write'
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = { 'markdown', 'text' },
-  command = 'set ts=2|set sw=2|set linebreak|set breakindent|setl formatoptions+=r|setl comments=b:*,b:-,b:+,b:>'
+	pattern = { 'markdown', 'text' },
+	command = 'set ts=2|set sw=2|set linebreak|set breakindent|setl formatoptions+=r|setl comments=b:*,b:-,b:+,b:>'
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = { 'lua' },
-  command = 'set ts=2|set sw=2|set expandtab'
-})
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = { 'python' },
-  command = 'set ts=4|set sw=4|set expandtab'
-})
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = { 'html', 'svelte', 'sql', 'go' },
-  command = 'set ts=2|set sw=2|set noexpandtab'
+	pattern = { 'html', 'svelte', 'sql', 'go' },
+	command = 'set ts=2|set sw=2|set noexpandtab'
 })
