@@ -41,7 +41,7 @@ require("lazy").setup("plugins")
 -- fzf
 vim.api.nvim_set_keymap('n', '<C-p>', ':Files<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-b>', ':Buffers<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>a', ':Ag ', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>s', ':Ag ', { noremap = true })
 -- nvim-tree
 vim.api.nvim_set_keymap('n', '<Leader>t', ':NvimTreeToggle<CR>', { noremap = true })
 -- Obsidian
