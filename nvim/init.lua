@@ -20,39 +20,58 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.mouse = ''
 
+vim.diagnostic.config({
+	severity_sort = true,
+	float = {
+		source = "always",
+	}
+})
+
 -- Basic mappings
 vim.g.mapleader = ' '
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Esc><Esc>', '<Esc>:nohlsearch<CR><Esc>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>w', ':write<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>n', ':source $MYVIMRC<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>q', ':q<CR>', { noremap = true })
--- Native LSP mappings
-vim.api.nvim_set_keymap('n', '<Leader>h', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', ']e', ':lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '[e', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-h>', '<C-w>h')
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
+vim.keymap.set('n', '<Esc>', '<Esc>:nohlsearch<CR><Esc>', { silent = true })
+vim.keymap.set('n', '<Leader>w', ':write<CR>')
+vim.keymap.set('n', '<Leader>n', ':source $MYVIMRC<CR>')
+vim.keymap.set('n', '<Leader>q', ':q<CR>')
 
 require("lazy").setup("plugins")
 
 -- Plugin mappings
 -- fzf
-vim.api.nvim_set_keymap('n', '<C-p>', ':Files<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-b>', ':Buffers<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>s', ':Ag ', { noremap = true })
+vim.keymap.set('n', '<C-p>', ':Files<CR>')
+vim.keymap.set('n', '<C-b>', ':Buffers<CR>')
+vim.keymap.set('n', '<Leader>s', ':Ag ')
 -- nvim-tree
-vim.api.nvim_set_keymap('n', '<Leader>t', ':NvimTreeToggle<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>t', ':NvimTreeToggle<CR>')
 -- Obsidian
-vim.api.nvim_set_keymap('n', '<Leader>on', ':ObsidianNew ', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>od', ':vsplit<CR>:ObsidianToday<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>ob', ':ObsidianBacklinks<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>oo', ':ObsidianOpen<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>os', ':ObsidianSearch<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>op', ':ObsidianQuickSwitch<CR>', { noremap = true })
-vim.api.nvim_set_keymap('v', '<Leader>oll', ':ObsidianLink ', { noremap = true })
-vim.api.nvim_set_keymap('v', '<Leader>oln', ':ObsidianLinkNew ', { noremap = true })
+vim.keymap.set('n', '<Leader>on', ':ObsidianNew ')
+vim.keymap.set('n', '<Leader>od', ':vsplit<CR>:ObsidianToday<CR>')
+vim.keymap.set('n', '<Leader>ob', ':ObsidianBacklinks<CR>')
+vim.keymap.set('n', '<Leader>oo', ':ObsidianOpen<CR>')
+vim.keymap.set('n', '<Leader>os', ':ObsidianSearch<CR>')
+vim.keymap.set('n', '<Leader>op', ':ObsidianQuickSwitch<CR>')
+vim.keymap.set('v', '<Leader>oll', ':ObsidianLink ')
+vim.keymap.set('v', '<Leader>oln', ':ObsidianLinkNew ')
+-- lspsaga
+vim.keymap.set('n', '<Leader>h', ':Lspsaga hover_doc<CR>')
+vim.keymap.set('n', '<Leader>a', ':Lspsaga code_action<CR>')
+vim.keymap.set('n', '<Leader>rf', ':Lspsaga rename<CR>')
+vim.keymap.set('n', '<Leader>rp', ':Lspsaga rename ++project<CR>')
+vim.keymap.set('n', 'gpp', ':Lspsaga peek_definition<CR>')
+vim.keymap.set('n', 'gpt', ':Lspsaga peek_type_definition<CR>')
+vim.keymap.set('n', 'gd', ':Lspsaga goto_definition<CR>')
+vim.keymap.set('n', '[e', function()
+	require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end)
+vim.keymap.set('n', ']e', function()
+	require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+end)
+vim.keymap.set('n', '<Leader>e', ':Lspsaga show_line_diagnostics<CR>')
+
 
 -- Autocommands --
 
@@ -66,5 +85,5 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
 	pattern = { 'html', 'svelte', 'sql', 'go' },
-	command = 'set ts=2|set sw=2|set noexpandtab'
+	command = 'set ts=4|set sw=4|set noexpandtab'
 })
