@@ -18,7 +18,6 @@ if vim.o.scrolloff == 0 then vim.o.scrolloff = 3 end
 if vim.o.sidescrolloff == 0 then vim.o.sidescrolloff = 5 end
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.o.mouse = ''
 
 vim.diagnostic.config({
 	severity_sort = true,
@@ -50,20 +49,17 @@ vim.keymap.set('n', '<Leader>t', ':NvimTreeToggle<CR>')
 -- Obsidian
 vim.keymap.set('n', '<Leader>on', ':ObsidianNew ')
 vim.keymap.set('n', '<Leader>od', ':vsplit<CR>:ObsidianToday<CR>')
-vim.keymap.set('n', '<Leader>ob', ':ObsidianBacklinks<CR>')
-vim.keymap.set('n', '<Leader>oo', ':ObsidianOpen<CR>')
-vim.keymap.set('n', '<Leader>os', ':ObsidianSearch<CR>')
-vim.keymap.set('n', '<Leader>op', ':ObsidianQuickSwitch<CR>')
 vim.keymap.set('v', '<Leader>oll', ':ObsidianLink ')
 vim.keymap.set('v', '<Leader>oln', ':ObsidianLinkNew ')
 -- lspsaga
-vim.keymap.set('n', '<Leader>h', ':Lspsaga hover_doc<CR>')
 vim.keymap.set('n', '<Leader>a', ':Lspsaga code_action<CR>')
 vim.keymap.set('n', '<Leader>rf', ':Lspsaga rename<CR>')
 vim.keymap.set('n', '<Leader>rp', ':Lspsaga rename ++project<CR>')
+vim.keymap.set('n', 'gh', ':Lspsaga hover_doc<CR>')
 vim.keymap.set('n', 'gpp', ':Lspsaga peek_definition<CR>')
 vim.keymap.set('n', 'gpt', ':Lspsaga peek_type_definition<CR>')
 vim.keymap.set('n', 'gd', ':Lspsaga goto_definition<CR>')
+vim.keymap.set('n', 'gl', ':Lspsaga finder<CR>')
 vim.keymap.set('n', '[e', function()
 	require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end)
@@ -84,6 +80,10 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 	command = 'set ts=2|set sw=2|set linebreak|set breakindent|setl formatoptions+=r|setl comments=b:*,b:-,b:+,b:>'
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-	pattern = { 'html', 'svelte', 'sql', 'go' },
+	pattern = { 'html', 'svelte', 'sql', 'go', 'javascript', 'jinja.html' },
 	command = 'set ts=4|set sw=4|set noexpandtab'
+})
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+	pattern = { '*.njk' },
+	command = 'setfiletype jinja.html'
 })
