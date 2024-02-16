@@ -76,7 +76,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 export FZF_BASE=/usr/local/bin/fzf
-plugins=(git fzf tmux vi-mode)
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+export VI_MODE_SET_CURSOR=true
+plugins=(fzf tmux vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
