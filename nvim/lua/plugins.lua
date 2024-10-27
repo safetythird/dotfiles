@@ -1,25 +1,32 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		config = function() require("mason").setup() end
-	},
-	"tpope/vim-surround",
-	{
-		"numToStr/Comment.nvim",
-		config = function() require("Comment").setup() end
+		config = true
 	},
 	{
-		"junegunn/fzf",
-		dependencies = { "junegunn/fzf.vim" }
-	},
-	"junegunn/fzf.vim",
-	{
-		"ggandor/leap.nvim",
+		'echasnovski/mini.nvim',
+		version = false,
 		config = function()
-			local leap = require('leap')
-			leap.add_default_mappings()
-			leap.opts.highlight_unlabeled_phase_one_targets = true
+			require('mini.surround').setup()
+			require('mini.pairs').setup()
+			require('mini.comment').setup()
+			require('mini.ai').setup()
 		end
+	},
+	{
+		"ibhagwan/fzf-lua",
+		-- optional for icon support
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = true,
+		keys = {
+			{ "<C-p>", ":FzfLua files<CR>", desc = "Fuzzy find files by path"},
+			{ "<C-b>", ":FzfLua buffers<CR>", desc = "Fuzzy find files"},
+			{ "<Leader>gf", ":FzfLua grep<CR>", desc = "Fuzzy find in files"},
+			{ "<Leader>gb", ":FzfLua grep_curbuf<CR>", desc = "Fuzzy find in current buffer"},
+			{ "<Leader>gl", ":FzfLua grep_last<CR>", desc = "Fuzzy find in files with last search word"},
+			{ "<Leader>gw", ":FzfLua grep_cword<CR>", desc = "Fuzzy find in files with word under cursor"},
+			{ "<Leader>gW", ":FzfLua grep_cWORD<CR>", desc = "Fuzzy find in files with WORD under cursor"}
+		}
 	},
 	{
 		"EdenEast/nightfox.nvim",
@@ -48,7 +55,7 @@ return {
 	"tpope/vim-fugitive",
 	{
 		"nvim-treesitter/nvim-treesitter",
-		config = function() require("treesittersetup") end,
+		config = true,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"windwp/nvim-ts-autotag",
@@ -56,15 +63,12 @@ return {
 		},
 	},
 
-	{ "windwp/nvim-autopairs",    config = function() require("nvim-autopairs").setup {} end },
 	{
 		"epwalsh/obsidian.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function() require("obsidiansetup") end
 	},
 	{
 		"neovim/nvim-lspconfig",
-		config = function() require("lspsetup") end
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -82,13 +86,11 @@ return {
 	{
 		"glepnir/lspsaga.nvim",
 		event = "LspAttach",
-		config = function()
-			require("lspsaga").setup({
-				lightbulb = {
-					sign = false,
-				},
-			})
-		end,
+		opts = {
+			lightbulb = {
+				sign = false,
+			},
+		},
 		dependencies = {
 			{ "nvim-tree/nvim-web-devicons" },
 			--Please make sure you install markdown and markdown_inline parser

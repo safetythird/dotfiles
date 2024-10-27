@@ -34,16 +34,11 @@ vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<Esc>', '<Esc>:nohlsearch<CR><Esc>', { silent = true })
 vim.keymap.set('n', '<Leader>w', ':write<CR>')
-vim.keymap.set('n', '<Leader>n', ':source $MYVIMRC<CR>')
 vim.keymap.set('n', '<Leader>q', ':q<CR>')
 
 require("lazy").setup("plugins")
 
 -- Plugin mappings
--- fzf
-vim.keymap.set('n', '<C-p>', ':Files<CR>')
-vim.keymap.set('n', '<C-b>', ':Buffers<CR>')
-vim.keymap.set('n', '<Leader>s', ':Ag ')
 -- nvim-tree
 vim.keymap.set('n', '<Leader>t', ':NvimTreeToggle<CR>')
 -- Obsidian
