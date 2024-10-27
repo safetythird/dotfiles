@@ -83,7 +83,25 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 	pattern = { 'html', 'svelte', 'sql', 'go', 'javascript', 'jinja.html' },
 	command = 'set ts=4|set sw=4|set noexpandtab'
 })
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+	pattern = { 'svelte', 'javascript', 'typescript' },
+	command = 'set ts=2|set sw=2|set noexpandtab'
+})
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 	pattern = { '*.njk' },
 	command = 'setfiletype jinja.html'
 })
+
+
+-- User commands --
+vim.api.nvim_create_user_command(
+	'FixTabs',
+	function(opts)
+		local config_ts = vim.opt.ts:get()
+		local file_ts = opts.fargs[1]
+		vim.opt_local.ts = tonumber(file_ts)
+		vim.cmd('%retab!')
+		vim.opt_local.ts = tonumber(config_ts)
+	end,
+	{ nargs = 1 }
+)

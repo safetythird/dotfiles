@@ -104,6 +104,7 @@ return {
 			vim.g.copilot_node_command = "~/.nvm/versions/node/v16.20.0/bin/node"
 			vim.cmd('imap <silent><script><expr> <C-J> copilot#Accept("\\<CR>")')
 			vim.g.copilot_no_tab_map = true
+			vim.g.copilot_filetypes = { markdown = false }
 		end
 	},
 
