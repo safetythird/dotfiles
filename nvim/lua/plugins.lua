@@ -1,4 +1,5 @@
 return {
+	"williamboman/mason.nvim",
 	"tpope/vim-surround",
 	{
 		"numToStr/Comment.nvim",
