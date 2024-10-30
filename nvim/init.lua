@@ -36,36 +36,7 @@ vim.keymap.set('n', '<Esc>', '<Esc>:nohlsearch<CR><Esc>', { silent = true })
 vim.keymap.set('n', '<Leader>w', ':write<CR>')
 vim.keymap.set('n', '<Leader>q', ':q<CR>')
 
-require("lazy").setup("plugins")
-
--- Plugin mappings
--- nvim-tree
-vim.keymap.set('n', '<Leader>t', ':NvimTreeToggle<CR>')
--- Obsidian
-vim.keymap.set('n', '<Leader>on', ':ObsidianNew ')
-vim.keymap.set('n', '<Leader>od', ':vsplit<CR>:ObsidianToday<CR>')
-vim.keymap.set('v', '<Leader>oll', ':ObsidianLink ')
-vim.keymap.set('v', '<Leader>oln', ':ObsidianLinkNew ')
--- lspsaga
-vim.keymap.set('n', '<Leader>a', ':Lspsaga code_action<CR>')
-vim.keymap.set('n', '<Leader>rf', ':Lspsaga rename<CR>')
-vim.keymap.set('n', '<Leader>rp', ':Lspsaga rename ++project<CR>')
-vim.keymap.set('n', 'gh', ':Lspsaga hover_doc<CR>')
-vim.keymap.set('n', 'gpp', ':Lspsaga peek_definition<CR>')
-vim.keymap.set('n', 'gpt', ':Lspsaga peek_type_definition<CR>')
-vim.keymap.set('n', 'gd', ':Lspsaga goto_definition<CR>')
-vim.keymap.set('n', 'gl', ':Lspsaga finder<CR>')
-vim.keymap.set('n', '[e', function()
-	require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end)
-vim.keymap.set('n', ']e', function()
-	require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-end)
-vim.keymap.set('n', '<Leader>e', ':Lspsaga show_line_diagnostics<CR>')
-
-
 -- Autocommands --
-
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged', 'FocusLost' }, {
 	pattern = { '*.md', '*.txt' },
 	command = 'silent! write'
@@ -100,3 +71,6 @@ vim.api.nvim_create_user_command(
 	end,
 	{ nargs = 1 }
 )
+
+-- Load plugins --
+require("lazy").setup("plugins")
