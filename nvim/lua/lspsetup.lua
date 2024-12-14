@@ -62,3 +62,7 @@ lspconfig['lua_ls'].setup {
 lspconfig['pyright'].setup {
 	capabilities = capabilities,
 }
+
+lspconfig['clangd'].setup {
+	capabilities = capabilities,
+}
