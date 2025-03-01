@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 	command = 'set ts=2|set sw=2|set linebreak|set breakindent|setl formatoptions+=r|setl comments=b:*,b:-,b:+,b:>'
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-	pattern = { 'html', 'svelte', 'sql', 'go', 'javascript', 'jinja.html' },
+	pattern = { 'html', 'svelte', 'sql', 'go', 'javascript', 'jinja.html', "c" },
 	command = 'set ts=4|set sw=4|set noexpandtab'
 })
 vim.api.nvim_create_autocmd({ 'FileType' }, {
