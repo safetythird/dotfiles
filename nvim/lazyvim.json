@@ -1,6 +1,9 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.lang.omnisharp"
+    "lazyvim.plugins.extras.coding.mini-surround",
+    "lazyvim.plugins.extras.editor.fzf",
+    "lazyvim.plugins.extras.lang.tailwind",
+    "lazyvim.plugins.extras.lang.typescript"
   ],
   "install_version": 8,
   "news": {
